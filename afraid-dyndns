@@ -96,7 +96,7 @@ if ($extip eq $intip) {
 
 	$xml = get(sprintf($afraid, $ARGV{AccountHash}));
 	die "Failed fetching update head!" unless $xml;
-	$o = XMLin($xml);
+	$o = XMLin($xml, forcearray => ['item']);
 	for (@{$o->{item}}) {
 		next if $hostname && $_->{host} !~ /$hostname/;
 		debug("- $_->{host}");
